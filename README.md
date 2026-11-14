@@ -6,7 +6,7 @@
 
 ## 发布个人内容
 
-- `content/owner.json`：昵称、头像、`about.zh` / `about.en` / `about.ja` 和友链。三语 About 当前留空，等待主人正式文案；不会自动编造或翻译。
+- `content/owner.json`：昵称、头像、`about.zh` / `about.en` / `about.ja` 和友链。三语 About 已按主人确认的中文及自然改写的英日文配置，歌词均保留日文；访客选择界面语言后显示对应版本。后续可直接编辑这些字段。
 - `content/daily/*.md`：只有仓库维护者可以写个人随笔。添加下面格式的文件，提交到 main 后自动构建发布。`draft: true` 不公开。`id` 必须以 `daily-` 开头、每篇唯一，之后保持不变。
 - 图片放 `web/assets/`，文章封面建议先裁成 A4 竖版。上传示例、私人文件和密钥不会自动发布。
 
