@@ -32,6 +32,7 @@ write('home-manifest.js','window.RM_MANIFEST='+json(base)+';\n');
 fs.copyFileSync(path.join(root,'node_modules/@supabase/supabase-js/dist/umd/supabase.js'),path.join(out,'vendor/supabase.js'));
 fs.copyFileSync(path.join(root,'node_modules/@supabase/supabase-js/LICENSE'),path.join(out,'vendor/SUPABASE-LICENSE.txt'));
 const cssVersion=crypto.createHash('sha256').update(read('web/community.css')).digest('hex').slice(0,12);
-const html=read('web/index.html').replace('href="community.css"','href="community.css?v='+cssVersion+'"');
+const contentVersion=crypto.createHash('sha256').update(fs.readFileSync(path.join(out,'content/generated.js'))).digest('hex').slice(0,12);
+const html=read('web/index.html').replace('href="community.css"','href="community.css?v='+cssVersion+'"').replace('src="content/generated.js"','src="content/generated.js?v='+contentVersion+'"');
 write('index.html',html);write('.nojekyll','');write('404.html',html);
 console.log(JSON.stringify({daily:daily.length,frames:base.frameCount,output:'dist'}));
