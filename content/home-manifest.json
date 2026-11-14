@@ -1,0 +1,176 @@
+{
+  "canvas": {
+    "width": 1585,
+    "height": 992
+  },
+  "source": {
+    "sunny": "source/homepage-sunny-idle-dot.png",
+    "rainy": "source/homepage-rainy-idle-dot.png"
+  },
+  "background": {
+    "sunny": "plates/sunny-background.png",
+    "rainy": "plates/rainy-background.png"
+  },
+  "glass": {
+    "sunny": "plates/sunny-fixed-glass.png",
+    "rainy": "plates/rainy-fixed-glass.png"
+  },
+  "sequences": {
+    "hero-reading": {
+      "frames": [
+        "frames/hero-reading/01.png"
+      ],
+      "kind": "hero",
+      "drawnAs": "whole person and book together",
+      "idleBodyLocked": true
+    },
+    "hero-page-turn": {
+      "frames": [
+        "frames/hero-page-turn/01.png",
+        "frames/hero-page-turn/02.png",
+        "frames/hero-page-turn/03.png",
+        "frames/hero-page-turn/04.png",
+        "frames/hero-page-turn/05.png",
+        "frames/hero-page-turn/06.png",
+        "frames/hero-page-turn/07.png",
+        "frames/hero-page-turn/08.png",
+        "frames/hero-page-turn/09.png"
+      ],
+      "kind": "hero",
+      "drawnAs": "whole person and book together",
+      "idleBodyLocked": false
+    },
+    "cat-tail": {
+      "frames": [
+        "frames/cat-tail/01.png",
+        "frames/cat-tail/02.png",
+        "frames/cat-tail/03.png",
+        "frames/cat-tail/04.png",
+        "frames/cat-tail/05.png",
+        "frames/cat-tail/06.png",
+        "frames/cat-tail/07.png",
+        "frames/cat-tail/08.png",
+        "frames/cat-tail/09.png"
+      ],
+      "kind": "cat"
+    },
+    "cat-yawn": {
+      "frames": [
+        "frames/cat-yawn/01.png",
+        "frames/cat-yawn/02.png",
+        "frames/cat-yawn/03.png",
+        "frames/cat-yawn/04.png",
+        "frames/cat-yawn/05.png",
+        "frames/cat-yawn/06.png",
+        "frames/cat-yawn/07.png",
+        "frames/cat-yawn/08.png",
+        "frames/cat-yawn/09.png"
+      ],
+      "kind": "cat"
+    },
+    "gull-left": {
+      "frames": [
+        "frames/gull-left/01.png",
+        "frames/gull-left/02.png",
+        "frames/gull-left/03.png",
+        "frames/gull-left/04.png",
+        "frames/gull-left/05.png",
+        "frames/gull-left/06.png"
+      ],
+      "kind": "gull"
+    },
+    "gull-right": {
+      "frames": [
+        "frames/gull-right/01.png",
+        "frames/gull-right/02.png",
+        "frames/gull-right/03.png",
+        "frames/gull-right/04.png",
+        "frames/gull-right/05.png",
+        "frames/gull-right/06.png"
+      ],
+      "kind": "gull"
+    },
+    "sky-bird": {
+      "frames": [
+        "frames/sky-bird/01.png",
+        "frames/sky-bird/02.png",
+        "frames/sky-bird/03.png",
+        "frames/sky-bird/04.png",
+        "frames/sky-bird/05.png",
+        "frames/sky-bird/06.png"
+      ],
+      "kind": "bird"
+    },
+    "waves": {
+      "frames": [
+        "frames/waves/01.png",
+        "frames/waves/02.png",
+        "frames/waves/03.png",
+        "frames/waves/04.png",
+        "frames/waves/05.png",
+        "frames/waves/06.png"
+      ],
+      "kind": "waves"
+    }
+  },
+  "frameCount": 52,
+  "weatherTransform": {
+    "sunny": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "rainy": [
+      0.982,
+      0,
+      0,
+      0.982,
+      -2,
+      -3
+    ]
+  },
+  "positions": {
+    "hero": [
+      340,
+      300
+    ],
+    "cat": [
+      890,
+      695
+    ],
+    "gull-left": [
+      797,
+      580
+    ],
+    "gull-right": [
+      891,
+      580
+    ],
+    "sky-bird": [
+      986,
+      426
+    ],
+    "waves": [
+      385,
+      554
+    ]
+  },
+  "rendering": {
+    "motionBlur": false,
+    "frameCrossfade": false,
+    "drawnCelsOnly": true,
+    "hoverMaxScale": 1.06,
+    "idlePupilAnimation": false,
+    "idleHairAnimation": false,
+    "staticIdleWholeCel": true,
+    "idleMouth": "single solid dot; all page-turn mouth drawings retained"
+  },
+  "hoverLayers": {
+    "sunny": "layers/books-sunny.png",
+    "rainy": "layers/books-rainy.png"
+  },
+  "revision": "v3 approved thin wavering lines / drawn clear cels / idle-only dot mouth"
+}
