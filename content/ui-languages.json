@@ -968,5 +968,75 @@
     "草稿存储暂不可用。",
     "Draft storage is temporarily unavailable.",
     "下書きの保存は一時的に利用できません。"
+  ],
+  [
+    "你的头像",
+    "Your avatar",
+    "あなたのアバター"
+  ],
+  [
+    "作者头像",
+    "Author avatar",
+    "投稿者のアバター"
+  ],
+  [
+    "默认头像",
+    "Default avatar",
+    "デフォルトアバター"
+  ],
+  [
+    "上传头像",
+    "Upload avatar",
+    "アバターをアップロード"
+  ],
+  [
+    "使用默认头像",
+    "Use default avatar",
+    "デフォルトに戻す"
+  ],
+  [
+    "正在读取头像…",
+    "Loading your avatar…",
+    "アバターを読み込み中…"
+  ],
+  [
+    "头像会用于你的帖子和留言。",
+    "Used for your posts and guestbook notes.",
+    "投稿とひとこと帳に表示されます。"
+  ],
+  [
+    "正在保存头像…",
+    "Saving your avatar…",
+    "アバターを保存中…"
+  ],
+  [
+    "头像已保存。",
+    "Your avatar is saved.",
+    "アバターを保存しました。"
+  ],
+  [
+    "裁剪头像",
+    "Crop your avatar",
+    "アバターをトリミング"
+  ],
+  [
+    "拖动图片调整位置，保留你想展示的部分。",
+    "Drag the image to choose what appears in your avatar.",
+    "画像をドラッグして表示する部分を選んでください。"
+  ],
+  [
+    "头像裁剪预览",
+    "Avatar crop preview",
+    "アバターのトリミングプレビュー"
+  ],
+  [
+    "保存头像",
+    "Save avatar",
+    "アバターを保存"
+  ],
+  [
+    "头像需要裁成 256 × 256 的正方形。",
+    "Crop your avatar to a 256 × 256 square.",
+    "アバターは256 × 256の正方形にトリミングしてください。"
   ]
 ]

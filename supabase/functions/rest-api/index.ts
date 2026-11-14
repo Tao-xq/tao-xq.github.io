@@ -28,23 +28,30 @@ function cleanBody(html){
 }
 function parseBody(body){const {document}=parseHTML('<html><body>'+body+'</body></html>');return document;}
 function textNodes(doc){const found=[];function walk(n,skip=false){const no=skip||['PRE','CODE'].includes(n.nodeName);if(n.nodeType===3&&n.textContent.trim()&&!no)found.push(n);for(const child of n.childNodes||[])walk(child,no);}walk(doc.body);return found;}
-function publicPost(p,viewer,views=0){return {id:p.id,section:'community',title:p.title,author:p.author,body:p.body,cover:p.cover,lang:p.lang,publishedAt:p.published_at,updatedAt:p.updated_at,version:p.version,own:viewer===p.author_id,views};}
+// Auth UUIDs are random. Mapping one UUID to one of eight presets is uniform and stable.
+function defaultAvatar(user){const n=Number.parseInt(String(user).replace(/-/g,'').slice(-8),16);return Number.isFinite(n)?n%8:0;}
+function avatarProfile(user,avatar=null){return {avatar:avatar||null,avatarPreset:defaultAvatar(user)};}
+async function profilesFor(users){const ids=[...new Set(users)];if(!ids.length)return new Map();const rows=check(await db.from('visitor_profiles').select('author_id,avatar').in('author_id',ids));return new Map(ids.map(id=>[id,avatarProfile(id,rows.find(p=>p.author_id===id)?.avatar)]));}
+async function ownProfile(user){return (await profilesFor([user])).get(user);}
+function publicPost(p,viewer,views=0,profile=avatarProfile(p.author_id)){return {id:p.id,section:'community',title:p.title,author:p.author,body:p.body,cover:p.cover,lang:p.lang,publishedAt:p.published_at,updatedAt:p.updated_at,version:p.version,own:viewer===p.author_id,views,...profile};}
+function publicNote(n,profile=avatarProfile(n.author_id)){return {id:n.id,author:n.author,body:n.body,publishedAt:n.published_at,...profile};}
 function check(result){if(result.error)throw error('SERVICE_UNAVAILABLE',503);return result.data;}
 async function identity(req,required=false){const jwt=(req.headers.get('authorization')||'').replace(/^Bearer /i,'');if(!jwt){if(required)throw error('SESSION_REQUIRED',401);return null;}const {data,error:e}=await db.auth.getUser(jwt);if(e||!data.user){if(required)throw error('SESSION_EXPIRED',401);return null;}return data.user.id;}
 async function limited(key,max,seconds){if(!check(await db.rpc('take_limit',{p_bucket:key,p_max:max,p_seconds:seconds})))throw error('RATE_LIMIT',429);}
 async function canonical(id){
- if(UUID.test(id)){const p=check(await db.from('community_posts').select('*').eq('id',id).eq('status','published').maybeSingle());if(!p)throw error('NOT_FOUND',404);return publicPost(p,null);}
+ if(UUID.test(id)){const p=check(await db.from('community_posts').select('*').eq('id',id).eq('status','published').maybeSingle());if(!p)throw error('NOT_FOUND',404);return publicPost(p,null,0,await ownProfile(p.author_id));}
  const response=await fetch(SITE+'/content/posts.json',{signal:AbortSignal.timeout(10000)});if(!response.ok)throw error('NOT_FOUND',404);
  const posts=await response.json();const p=posts.find(p=>p.id===id);if(!p)throw error('NOT_FOUND',404);return p;
 }
 async function upload(user,input){
- if(!['body','cover'].includes(input.kind)||typeof input.data!=='string'||input.data.length>2800000)throw error('INVALID_IMAGE');
+ if(!['body','cover','avatar'].includes(input.kind)||typeof input.data!=='string'||input.data.length>2800000)throw error('INVALID_IMAGE');
  const match=input.data.match(/^data:image\/(jpeg|png);base64,([A-Za-z0-9+/=]+)$/);if(!match)throw error('INVALID_IMAGE');
  let bytes;try{bytes=Uint8Array.from(atob(match[2]),c=>c.charCodeAt(0));}catch{throw error('INVALID_IMAGE');}
  if(bytes.length>2097152||bytes.length<32)throw error('INVALID_IMAGE');
  let info;try{info=imageSize(bytes);}catch{throw error('INVALID_IMAGE');}
  if(!['jpg','png'].includes(info.type)||info.width<20||info.height<20||info.width>4096||info.height>4096||info.width*info.height>6000000)throw error('INVALID_IMAGE');
  if(input.kind==='cover'&&(info.width!==420||info.height!==594))throw error('COVER_RATIO');
+ if(input.kind==='avatar'&&(info.width!==256||info.height!==256||bytes.length>524288))throw error('AVATAR_RATIO');
  await limited('upload:'+user,40,3600);await limited('upload:global',200,86400);
  const path=user+'/'+crypto.randomUUID()+'.'+(info.type==='jpg'?'jpg':'png');
  check(await db.storage.from('post-images').upload(path,bytes,{contentType:info.type==='jpg'?'image/jpeg':'image/png',upsert:false,cacheControl:'31536000'}));
@@ -98,15 +105,16 @@ async function handler(req){
   const url=new URL(req.url),parts=url.pathname.split('/').filter(Boolean),offset=parts.indexOf('rest-api');const path='/'+parts.slice(offset+1).join('/');
   if(req.method==='GET'&&path==='/health')return reply({ok:true,translationConfigured:!!env('DEEPL_API_KEY')});
   const ip=await hash((req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()||'unknown')+SERVER_KEY);
+  if(req.method==='GET'&&path==='/profile'){const user=await identity(req,true);return reply(await ownProfile(user));}
   if(req.method==='GET'&&path==='/posts'){
    const start=Math.max(0,Math.min(100000,Math.floor(Number(url.searchParams.get('offset'))||0))),q=(url.searchParams.get('q')||'').slice(0,100).replace(/[^\p{L}\p{N}\s-]/gu,' ');
    let query=db.from('community_posts').select('*',{count:'exact'}).eq('status','published').order('published_at',{ascending:false}).order('id',{ascending:false}).range(start,start+23);
    if(q.trim())query=query.or(`title.ilike.%${q}%,author.ilike.%${q}%,plain_body.ilike.%${q}%`);
-   const result=await query,posts=check(result),viewer=await identity(req);const counts=check(await db.from('post_view_counts').select('*').in('post_id',posts.map(p=>p.id)));
-   return reply({posts:posts.map(p=>publicPost(p,viewer,counts.find(c=>c.post_id===p.id)?.views||0)),total:result.count});
+   const result=await query,posts=check(result);const [viewer,countResult,profiles]=await Promise.all([identity(req),db.from('post_view_counts').select('*').in('post_id',posts.map(p=>p.id)),profilesFor(posts.map(p=>p.author_id))]);const counts=check(countResult);
+   return reply({posts:posts.map(p=>publicPost(p,viewer,counts.find(c=>c.post_id===p.id)?.views||0,profiles.get(p.author_id))),total:result.count});
   }
   if(req.method==='GET'&&path.startsWith('/posts/')){const id=path.slice(7),p=await canonical(id),viewer=await identity(req);if(UUID.test(id)){const row=check(await db.from('community_posts').select('author_id').eq('id',id).single());p.own=row.author_id===viewer;}const c=check(await db.from('post_view_counts').select('views').eq('post_id',id).maybeSingle());p.views=c?.views||0;return reply(p);}
-  if(req.method==='GET'&&path==='/notes'){const start=Math.max(0,Math.min(100000,Number(url.searchParams.get('offset'))||0));const result=await db.from('short_notes').select('id,author,body,published_at',{count:'exact'}).eq('status','published').order('published_at',{ascending:false}).order('id',{ascending:false}).range(start,start+49);return reply({notes:check(result).map(n=>({...n,publishedAt:n.published_at})),total:result.count});}
+  if(req.method==='GET'&&path==='/notes'){const start=Math.max(0,Math.min(100000,Number(url.searchParams.get('offset'))||0));const result=await db.from('short_notes').select('id,author_id,author,body,published_at',{count:'exact'}).eq('status','published').order('published_at',{ascending:false}).order('id',{ascending:false}).range(start,start+49);const notes=check(result),profiles=await profilesFor(notes.map(n=>n.author_id));return reply({notes:notes.map(n=>publicNote(n,profiles.get(n.author_id))),total:result.count});}
   if(!['POST','PATCH'].includes(req.method))throw error('NOT_FOUND',404);
   if(Number(req.headers.get('content-length')||0)>3000000)throw error('PAYLOAD_TOO_LARGE',413);
   const raw=await req.text();if(raw.length>3000000)throw error('PAYLOAD_TOO_LARGE',413);let input;try{input=JSON.parse(raw);}catch{throw error('INVALID_INPUT');}if(!input||typeof input!=='object'||Array.isArray(input))throw error('INVALID_INPUT');
@@ -114,9 +122,10 @@ async function handler(req){
   if(path==='/views'){await canonical(input.postId);await limited('views:'+ip,300,3600);const views=check(await db.rpc('record_view',{p_post:input.postId,p_visitor:ip}));return reply({views});}
   const user=await identity(req,true);await limited('write:ip:'+ip,100,3600);
   if(path==='/uploads')return reply(await upload(user,input),201);
-  if(path==='/notes'&&req.method==='POST'){await limited('note:'+user,10,3600);await limited('notes:ip:'+ip,20,3600);const note=check(await db.from('short_notes').insert({author_id:user,author:cleanText(input.author,24),body:cleanText(input.body,280)}).select('id,author,body,published_at').single());return reply({...note,publishedAt:note.published_at},201);}
-  if(path==='/posts'&&req.method==='POST'){await limited('post:'+user,5,3600);await limited('posts:ip:'+ip,10,3600);const data=await validatePost(input,user),p=check(await db.from('community_posts').insert({...data,author_id:user}).select('*').single());return reply(publicPost(p,user),201);}
-  if(path.startsWith('/posts/')&&req.method==='PATCH'){const id=path.slice(7);if(!UUID.test(id))throw error('FORBIDDEN',403);const old=check(await db.from('community_posts').select('*').eq('id',id).eq('author_id',user).eq('status','published').maybeSingle());if(!old)throw error('FORBIDDEN',403);if(Number(input.version)!==old.version)throw error('SOURCE_CHANGED',409);const data=await validatePost(input,user);const p=check(await db.from('community_posts').update({...data,version:old.version+1,updated_at:new Date().toISOString()}).eq('id',id).eq('author_id',user).eq('version',old.version).select('*').maybeSingle());if(!p)throw error('SOURCE_CHANGED',409);return reply(publicPost(p,user));}
+  if(path==='/profile'&&req.method==='PATCH'){await limited('profile:'+user,20,3600);if(input.avatar!==null){if(typeof input.avatar!=='string'||!safeImage(input.avatar))throw error('INVALID_IMAGE');const owned=check(await db.from('uploads').select('path').eq('author_id',user).eq('kind','avatar').eq('path',input.avatar.slice(IMAGE_BASE.length)).maybeSingle());if(!owned)throw error('IMAGE_OWNERSHIP',403);}check(await db.from('visitor_profiles').upsert({author_id:user,avatar:input.avatar,updated_at:new Date().toISOString()},{onConflict:'author_id'}));return reply(await ownProfile(user));}
+  if(path==='/notes'&&req.method==='POST'){await limited('note:'+user,10,3600);await limited('notes:ip:'+ip,20,3600);const note=check(await db.from('short_notes').insert({author_id:user,author:cleanText(input.author,24),body:cleanText(input.body,280)}).select('id,author_id,author,body,published_at').single());return reply(publicNote(note,await ownProfile(user)),201);}
+  if(path==='/posts'&&req.method==='POST'){await limited('post:'+user,5,3600);await limited('posts:ip:'+ip,10,3600);const data=await validatePost(input,user),p=check(await db.from('community_posts').insert({...data,author_id:user}).select('*').single());return reply(publicPost(p,user,0,await ownProfile(user)),201);}
+  if(path.startsWith('/posts/')&&req.method==='PATCH'){const id=path.slice(7);if(!UUID.test(id))throw error('FORBIDDEN',403);const old=check(await db.from('community_posts').select('*').eq('id',id).eq('author_id',user).eq('status','published').maybeSingle());if(!old)throw error('FORBIDDEN',403);if(Number(input.version)!==old.version)throw error('SOURCE_CHANGED',409);const data=await validatePost(input,user);const p=check(await db.from('community_posts').update({...data,version:old.version+1,updated_at:new Date().toISOString()}).eq('id',id).eq('author_id',user).eq('version',old.version).select('*').maybeSingle());if(!p)throw error('SOURCE_CHANGED',409);return reply(publicPost(p,user,0,await ownProfile(user)));}
   throw error('NOT_FOUND',404);
  }catch(e){const status=e.status||500;return reply({error:status===500?'SERVICE_UNAVAILABLE':e.message},status);}
 }
