@@ -923,5 +923,50 @@
     "本期免费翻译额度已用完，原文仍可正常阅读。",
     "The free translation allowance is exhausted. You can still read the original.",
     "無料翻訳の上限に達しました。原文は通常どおり読めます。"
+  ],
+  [
+    "无法建立访客会话，请刷新后重试。",
+    "A visitor session could not be created. Please refresh and try again.",
+    "訪問者セッションを作成できません。更新してお試しください。"
+  ],
+  [
+    "访客会话已过期，请刷新后重试。",
+    "Your visitor session has expired. Please refresh and try again.",
+    "訪問者セッションの有効期限が切れました。更新してください。"
+  ],
+  [
+    "请检查昵称、标题和正文长度。",
+    "Please check the length of your nickname, title and text.",
+    "ニックネーム・タイトル・本文の長さをご確認ください。"
+  ],
+  [
+    "图片无法上传，请使用不超过 2MB 的 JPG 或 PNG。",
+    "Use a JPG or PNG image no larger than 2MB.",
+    "2MB以下のJPGまたはPNG画像をご使用ください。"
+  ],
+  [
+    "请重新裁剪 A4 封面。",
+    "Please crop the A4 cover again.",
+    "A4の表紙をもう一度トリミングしてください。"
+  ],
+  [
+    "这张图片不属于当前访客会话，请重新上传。",
+    "Please upload this image again from your current visitor session.",
+    "現在の訪問者セッションで画像をアップロードし直してください。"
+  ],
+  [
+    "这篇译文正在生成，请稍后再点一次。",
+    "This translation is being prepared. Please try again shortly.",
+    "翻訳を作成中です。少し待ってから再度お試しください。"
+  ],
+  [
+    "这一段过长，暂时无法翻译。",
+    "This paragraph is too long to translate.",
+    "段落が長すぎるため翻訳できません。"
+  ],
+  [
+    "草稿存储暂不可用。",
+    "Draft storage is temporarily unavailable.",
+    "下書きの保存は一時的に利用できません。"
   ]
 ]
