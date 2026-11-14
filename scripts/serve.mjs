@@ -1,0 +1,5 @@
+import http from 'node:http';import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const setup={'/setup/edge.txt':'supabase/functions/rest-api/index.ts','/setup/schema.txt':'supabase/migrations/202611140001_rest_mode.sql'};
+const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.txt':'text/plain','.ts':'text/plain'};
+http.createServer((req,res)=>{const p=decodeURIComponent(new URL(req.url,'http://localhost').pathname);const file=setup[p]?path.join(root,setup[p]):path.resolve(root,'dist','.'+(p==='/'?'/index.html':p));if(!setup[p]&&!file.startsWith(path.join(root,'dist')+path.sep)){res.writeHead(403).end();return;}try{const data=fs.readFileSync(file);res.writeHead(200,{'Content-Type':(types[path.extname(file)]||'application/octet-stream')+'; charset=utf-8','Cache-Control':'no-store'});res.end(data);}catch{res.writeHead(404).end('Not found');}}).listen(4173,'127.0.0.1',()=>console.log('http://127.0.0.1:4173/'));

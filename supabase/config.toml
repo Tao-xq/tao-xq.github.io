@@ -1,0 +1,5 @@
+project_id = "rest-mode"
+
+[functions.rest-api]
+# Public reads; every write validates Supabase Auth using auth.getUser.
+verify_jwt = false

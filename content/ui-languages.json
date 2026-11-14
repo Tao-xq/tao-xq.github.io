@@ -1,0 +1,972 @@
+[
+  [
+    "语言",
+    "Language",
+    "言語"
+  ],
+  [
+    "选择界面语言",
+    "Choose interface language",
+    "表示言語を選択"
+  ],
+  [
+    "本地预览",
+    "Local preview",
+    "ローカルプレビュー"
+  ],
+  [
+    "窗边与沙滩",
+    "Window & shore",
+    "窓辺と砂浜"
+  ],
+  [
+    "点开书柜，翻翻大家留下的故事。",
+    "Open the bookshelf and browse everyone's stories.",
+    "本棚を開いて、みんなの物語を読んでみよう。"
+  ],
+  [
+    "本地界面预览 · 内容与发布仅在当前浏览器中",
+    "Local preview · Content stays in this browser",
+    "ローカルプレビュー · 投稿はこのブラウザー内に保存されます"
+  ],
+  [
+    "打开书柜 ↗",
+    "Open bookshelf ↗",
+    "本棚を開く ↗"
+  ],
+  [
+    "正在打开窗景…",
+    "Opening the window…",
+    "窓辺を開いています…"
+  ],
+  [
+    "海边窗景主页",
+    "Seaside window homepage",
+    "海辺の窓景ホーム"
+  ],
+  [
+    "女主在窗边看书，小猫与海鸥轻轻活动",
+    "Reading by the window, with a sleeping cat and seabirds",
+    "窓辺で読書する女の子と、眠る猫、海鳥たち"
+  ],
+  [
+    "切换晴天",
+    "Sunny mode",
+    "晴れに切り替える"
+  ],
+  [
+    "切换阴雨",
+    "Rainy mode",
+    "雨に切り替える"
+  ],
+  [
+    "进入次元闲谈发帖写作区",
+    "Write an ACGN post",
+    "次元の雑談に投稿する"
+  ],
+  [
+    "打开次元闲谈和日常随笔",
+    "Open ACGN Notes & Daily Notes",
+    "次元の雑談と日々の随筆を開く"
+  ],
+  [
+    "点击小猫打一次哈欠",
+    "Tap the cat for a yawn",
+    "猫を押すと、一度あくびをします"
+  ],
+  [
+    "回到窗边",
+    "Back to the window",
+    "窓辺に戻る"
+  ],
+  [
+    "回到书柜",
+    "Back to the bookshelf",
+    "本棚に戻る"
+  ],
+  [
+    "书柜内容界面",
+    "Bookshelf pages",
+    "本棚のページ"
+  ],
+  [
+    "帖子分区",
+    "Post sections",
+    "投稿のカテゴリ"
+  ],
+  [
+    "次元闲谈",
+    "ACGN Talk",
+    "次元の雑談"
+  ],
+  [
+    "日常随笔",
+    "Daily Journal",
+    "日々の随筆"
+  ],
+  [
+    "回到次元闲谈",
+    "Back to ACGN Talk",
+    "次元の雑談に戻る"
+  ],
+  [
+    "回到日常随笔",
+    "Back to Daily Journal",
+    "日々の随筆に戻る"
+  ],
+  [
+    "搜索次元闲谈的帖子",
+    "Search ACGN posts",
+    "次元の雑談を検索"
+  ],
+  [
+    "搜索日常随笔的帖子",
+    "Search journal entries",
+    "日々の随筆を検索"
+  ],
+  [
+    "搜索关键词 / 作者",
+    "Search keywords / author",
+    "キーワード / 投稿者を検索"
+  ],
+  [
+    "聊作品，也聊喜欢它们的理由。",
+    "Stories we love, and why we love them.",
+    "好きな作品と、好きになった理由を話そう。"
+  ],
+  [
+    "这一页，是我自己的日常。",
+    "A few pages from my everyday life.",
+    "このページは、私の日々の記録です。"
+  ],
+  [
+    "写一张新便签 ↗",
+    "Write a new post ↗",
+    "新しい投稿を書く ↗"
+  ],
+  [
+    "仅主人发布",
+    "Published by the owner",
+    "管理人のみ投稿できます"
+  ],
+  [
+    "帖子列表",
+    "Posts",
+    "投稿一覧"
+  ],
+  [
+    "这片沙滩上暂时没有找到",
+    "Nothing found on this shore yet",
+    "この砂浜には、まだ見つかりませんでした"
+  ],
+  [
+    "试试作品名、正文关键词，或作者昵称。",
+    "Try a title, a keyword, or an author's nickname.",
+    "作品名、本文の言葉、投稿者のニックネームで探してみてください。"
+  ],
+  [
+    "清空搜索",
+    "Clear search",
+    "検索をクリア"
+  ],
+  [
+    "再翻一些便签",
+    "Browse more posts",
+    "もっと読む"
+  ],
+  [
+    "搜索结果就到这里",
+    "That's all for this search",
+    "検索結果はここまでです"
+  ],
+  [
+    "慢慢看，看到这里就好。",
+    "Take your time. That's all for now.",
+    "ゆっくり読んで、今日はここまで。"
+  ],
+  [
+    "这是友链占位示例，可以换成朋友的头像、昵称和介绍。",
+    "This is a sample friend link, ready for a friend's avatar, name and introduction.",
+    "友達のアバター、名前、紹介文に差し替えられるサンプルです。"
+  ],
+  [
+    "主人会在这里放上这一语言的自我介绍。",
+    "The owner will add an introduction in this language here.",
+    "この言語の自己紹介は、後日ここに追加されます。"
+  ],
+  [
+    "编辑我的帖子",
+    "Edit my post",
+    "自分の投稿を編集"
+  ],
+  [
+    "此浏览器中的阅读次数",
+    "Views recorded in this browser",
+    "このブラウザー内の閲覧数"
+  ],
+  [
+    "浏览量",
+    "Views",
+    "閲覧数"
+  ],
+  [
+    "译为",
+    "Translate to",
+    "翻訳先"
+  ],
+  [
+    "目标语言",
+    "Target language",
+    "翻訳する言語"
+  ],
+  [
+    "翻译",
+    "Translate",
+    "翻訳"
+  ],
+  [
+    "查看原文",
+    "View original",
+    "原文を見る"
+  ],
+  [
+    "双语对照",
+    "Bilingual view",
+    "原文と対訳"
+  ],
+  [
+    "先选择目标语言，再点击翻译。",
+    "Choose a target language, then click Translate.",
+    "翻訳先の言語を選んでから「翻訳」を押してください。"
+  ],
+  [
+    "已选择目标语言，点击“翻译”自动生成译文。",
+    "Language selected. Click Translate to generate a translation.",
+    "言語を選びました。「翻訳」を押すと訳文を生成します。"
+  ],
+  [
+    "这就是该帖子的原文语言。",
+    "This is the original language of this post.",
+    "この投稿の原文の言語です。"
+  ],
+  [
+    "正在翻译…",
+    "Translating…",
+    "翻訳中…"
+  ],
+  [
+    "正在自动翻译这篇帖子的标题和正文…",
+    "Translating this post's title and body…",
+    "投稿のタイトルと本文を翻訳しています…"
+  ],
+  [
+    "示例文章 · 选择语言后点击翻译，按需自动生成。",
+    "Sample post · Choose a language and click Translate.",
+    "サンプル記事 · 言語を選んで「翻訳」を押してください。"
+  ],
+  [
+    "原文 · 选择语言后点击翻译，按需自动生成。",
+    "Original · Choose a language and click Translate.",
+    "原文 · 言語を選んで「翻訳」を押してください。"
+  ],
+  [
+    "原文 · 语言切换仅对当前读者生效。",
+    "Original · Language changes only affect your view.",
+    "原文 · 言語の切り替えは、あなたの表示にだけ適用されます。"
+  ],
+  [
+    "机器译文",
+    "Machine translation",
+    "機械翻訳"
+  ],
+  [
+    "已校对译文",
+    "Reviewed translation",
+    "校正済みの訳文"
+  ],
+  [
+    "自动翻译后台尚未连接。接入后，点击这里即可自动生成译文，不需要作者提前填写。",
+    "Automatic translation is not connected yet. Once connected, clicking here will translate the post; the author only writes the original.",
+    "自動翻訳サービスはまだ接続されていません。接続後はここを押すだけで翻訳でき、投稿者が訳文を書く必要はありません。"
+  ],
+  [
+    "暂时支持中文、英文和日文。",
+    "Chinese, English and Japanese are supported.",
+    "中国語、英語、日本語に対応しています。"
+  ],
+  [
+    "翻译结果与当前原文不匹配，请重试。",
+    "The translation does not match this version. Please retry.",
+    "訳文が現在の原文と一致しません。もう一度お試しください。"
+  ],
+  [
+    "翻译服务暂时不可用，请稍后重试。",
+    "Translation is unavailable. Please try again later.",
+    "翻訳サービスを利用できません。しばらくしてからお試しください。"
+  ],
+  [
+    "翻译失败，请稍后重试。",
+    "Translation failed. Please try again later.",
+    "翻訳に失敗しました。しばらくしてからお試しください。"
+  ],
+  [
+    "翻译后台地址无效。",
+    "The translation service address is invalid.",
+    "翻訳サービスのアドレスが無効です。"
+  ],
+  [
+    "当前浏览器无法生成原文版本，请使用现代浏览器或本地HTTP预览。",
+    "This browser cannot identify the source version. Use a modern browser or a local HTTP preview.",
+    "このブラウザーでは原文の版を確認できません。新しいブラウザーかローカルHTTPプレビューをご利用ください。"
+  ],
+  [
+    "只能编辑自己在本地发布的帖子。",
+    "You can only edit your own locally published posts.",
+    "このブラウザーで自分が投稿した記事のみ編集できます。"
+  ],
+  [
+    "再改改这张便签",
+    "A little more editing",
+    "この投稿を、もう少し編集"
+  ],
+  [
+    "写一张新的便签",
+    "Write a new post",
+    "新しい投稿を書く"
+  ],
+  [
+    "发往 次元闲谈 · ACGN Notes",
+    "Posting to ACGN Talk · ACGN Notes",
+    "投稿先：次元の雑談 · ACGN Notes"
+  ],
+  [
+    "保存草稿",
+    "Save draft",
+    "下書きを保存"
+  ],
+  [
+    "预览",
+    "Preview",
+    "プレビュー"
+  ],
+  [
+    "保存修改",
+    "Save changes",
+    "変更を保存"
+  ],
+  [
+    "发布",
+    "Publish",
+    "投稿する"
+  ],
+  [
+    "发布到次元闲谈",
+    "Publish to ACGN Talk",
+    "次元の雑談に投稿"
+  ],
+  [
+    "上传封面",
+    "Upload cover",
+    "表紙をアップロード"
+  ],
+  [
+    "A4 竖版 · 可调整裁剪",
+    "A4 portrait · Adjustable crop",
+    "A4縦 · 切り抜き調整可"
+  ],
+  [
+    "标题",
+    "Title",
+    "タイトル"
+  ],
+  [
+    "给这张便签起个名字",
+    "Give this post a title",
+    "この投稿にタイトルをつけて"
+  ],
+  [
+    "你的昵称",
+    "Your nickname",
+    "ニックネーム"
+  ],
+  [
+    "想怎么称呼你？",
+    "What should we call you?",
+    "なんとお呼びしましょう？"
+  ],
+  [
+    "原文语言",
+    "Original language",
+    "原文の言語"
+  ],
+  [
+    "已恢复上次保留的内容。",
+    "Your previous draft has been restored.",
+    "前回の下書きを復元しました。"
+  ],
+  [
+    "写到一半也没关系，草稿会自动保存在本机。",
+    "Take your time. Drafts are saved on this device.",
+    "途中でも大丈夫。下書きはこの端末に自動保存されます。"
+  ],
+  [
+    "本地预览：发布后只保存在当前浏览器。",
+    "Local preview: saved only in this browser.",
+    "ローカルプレビュー：投稿はこのブラウザー内に保存されます。"
+  ],
+  [
+    "先收起来",
+    "Put it away for now",
+    "いったんしまう"
+  ],
+  [
+    "帖子正文",
+    "Post body",
+    "投稿の本文"
+  ],
+  [
+    "从一个喜欢的片段、一点新发现开始写吧…",
+    "Start with a favourite moment or a little discovery…",
+    "好きな場面や、小さな発見から書いてみよう…"
+  ],
+  [
+    "段落样式",
+    "Paragraph style",
+    "段落スタイル"
+  ],
+  [
+    "正文",
+    "Body text",
+    "本文"
+  ],
+  [
+    "小标题",
+    "Subheading",
+    "小見出し"
+  ],
+  [
+    "加粗",
+    "Bold",
+    "太字"
+  ],
+  [
+    "斜体",
+    "Italic",
+    "斜体"
+  ],
+  [
+    "下划线",
+    "Underline",
+    "下線"
+  ],
+  [
+    "删除线",
+    "Strikethrough",
+    "取り消し線"
+  ],
+  [
+    "引用",
+    "Quote",
+    "引用"
+  ],
+  [
+    "无序列表",
+    "Bullet list",
+    "箇条書き"
+  ],
+  [
+    "有序列表",
+    "Numbered list",
+    "番号付きリスト"
+  ],
+  [
+    "对齐方式",
+    "Alignment",
+    "文字揃え"
+  ],
+  [
+    "插入链接",
+    "Insert link",
+    "リンクを挿入"
+  ],
+  [
+    "插入正文图片",
+    "Insert image",
+    "画像を挿入"
+  ],
+  [
+    "代码块",
+    "Code block",
+    "コードブロック"
+  ],
+  [
+    "清除格式",
+    "Clear formatting",
+    "書式をクリア"
+  ],
+  [
+    "撤销",
+    "Undo",
+    "元に戻す"
+  ],
+  [
+    "重做",
+    "Redo",
+    "やり直す"
+  ],
+  [
+    "当前封面",
+    "Current cover",
+    "現在の表紙"
+  ],
+  [
+    "重新选择 / 裁剪",
+    "Replace / crop",
+    "選び直す / 切り抜く"
+  ],
+  [
+    "草稿已保存在当前浏览器。",
+    "Draft saved in this browser.",
+    "下書きをこのブラウザーに保存しました。"
+  ],
+  [
+    "草稿保存失败，请导出或释放浏览器空间后重试。",
+    "The draft could not be saved. Keep a copy and free some browser storage.",
+    "下書きを保存できませんでした。内容を控えて、ブラウザーの空き容量をご確認ください。"
+  ],
+  [
+    "浏览器保存空间不足，请先保留正文再重试。",
+    "Browser storage is full. Keep a copy of your text before retrying.",
+    "ブラウザーの保存容量が足りません。本文を控えてから再度お試しください。"
+  ],
+  [
+    "发布前再看一眼",
+    "One last look before posting",
+    "投稿前に、もう一度確認"
+  ],
+  [
+    "关闭文章预览",
+    "Close preview",
+    "プレビューを閉じる"
+  ],
+  [
+    "还没起名字的便签",
+    "An untitled post",
+    "まだ名前のない投稿"
+  ],
+  [
+    "封面",
+    "Cover",
+    "表紙"
+  ],
+  [
+    "先上传并裁剪一张封面。",
+    "Upload and crop a cover first.",
+    "まず表紙をアップロードし、切り抜きを調整してください。"
+  ],
+  [
+    "请填写 1–24 字的昵称。",
+    "Enter a nickname of 1–24 characters.",
+    "ニックネームは1〜24文字で入力してください。"
+  ],
+  [
+    "修改已保存在本机。",
+    "Changes saved on this device.",
+    "変更をこの端末に保存しました。"
+  ],
+  [
+    "已发布到本机的次元闲谈；公开发布将在后台接入后启用。",
+    "Posted to ACGN Talk on this device. Public posting needs the connected backend.",
+    "この端末の「次元の雑談」に投稿しました。公開投稿はバックエンド接続後に利用できます。"
+  ],
+  [
+    "保存失败，正文仍在编辑器里，请保留内容后重试。",
+    "Saving failed. Your text is still in the editor; keep a copy before retrying.",
+    "保存できませんでした。本文はエディターに残っています。控えを取ってから再度お試しください。"
+  ],
+  [
+    "请选择 PNG、JPG、WebP 或 GIF 图片。",
+    "Choose a PNG, JPG, WebP or GIF image.",
+    "PNG、JPG、WebP、GIFの画像を選んでください。"
+  ],
+  [
+    "请选择小于 12MB 的图片。",
+    "Choose an image smaller than 12 MB.",
+    "12MB未満の画像を選んでください。"
+  ],
+  [
+    "图片读取失败",
+    "The image could not be read",
+    "画像を読み込めませんでした"
+  ],
+  [
+    "图片无法打开，请换一张。",
+    "This image could not be opened. Try another one.",
+    "画像を開けませんでした。別の画像をお試しください。"
+  ],
+  [
+    "裁一张 A4 封面",
+    "Crop an A4 cover",
+    "A4の表紙を切り抜く"
+  ],
+  [
+    "取消裁剪",
+    "Cancel crop",
+    "切り抜きをキャンセル"
+  ],
+  [
+    "拖动图片调整位置，也可以用下方滑杆。比例固定为 210 : 297。",
+    "Drag to position the image, or use the sliders. The ratio stays at 210 : 297.",
+    "画像をドラッグするか、下のスライダーで位置を調整してください。比率は210：297固定です。"
+  ],
+  [
+    "封面裁剪预览",
+    "Cover crop preview",
+    "表紙の切り抜きプレビュー"
+  ],
+  [
+    "缩放",
+    "Zoom",
+    "拡大・縮小"
+  ],
+  [
+    "左右",
+    "Horizontal",
+    "左右"
+  ],
+  [
+    "上下",
+    "Vertical",
+    "上下"
+  ],
+  [
+    "取消",
+    "Cancel",
+    "キャンセル"
+  ],
+  [
+    "使用这张封面",
+    "Use this cover",
+    "この表紙を使う"
+  ],
+  [
+    "正文最多放 12 张图片。",
+    "You can add up to 12 body images.",
+    "本文の画像は12枚までです。"
+  ],
+  [
+    "正文图片",
+    "Post image",
+    "本文の画像"
+  ],
+  [
+    "关闭链接窗口",
+    "Close link window",
+    "リンクのウィンドウを閉じる"
+  ],
+  [
+    "链接地址",
+    "Link address",
+    "リンク先"
+  ],
+  [
+    "插入",
+    "Insert",
+    "挿入"
+  ],
+  [
+    "请填写 http 或 https 链接。",
+    "Enter an http or https link.",
+    "httpまたはhttpsのリンクを入力してください。"
+  ],
+  [
+    "关闭",
+    "Close",
+    "閉じる"
+  ],
+  [
+    "这张便签还没来到沙滩上。",
+    "This post has not reached the shore yet.",
+    "この投稿は、まだ砂浜に届いていません。"
+  ],
+  [
+    "本地存储暂不可用，仍可查看示例界面。",
+    "Local storage is unavailable. You can still browse the sample pages.",
+    "ローカル保存を利用できません。サンプルの画面は引き続きご覧いただけます。"
+  ],
+  [
+    "暂停",
+    "Pause",
+    "一時停止"
+  ],
+  [
+    "播放",
+    "Play",
+    "再生"
+  ],
+  [
+    "看翻页",
+    "See page turn",
+    "ページめくりを見る"
+  ],
+  [
+    "看哈欠",
+    "See yawn",
+    "あくびを見る"
+  ],
+  [
+    "对照原图",
+    "Compare original",
+    "元の画像と比較"
+  ],
+  [
+    "逐帧查看",
+    "Inspect frames",
+    "コマを見る"
+  ],
+  [
+    "上一帧",
+    "Previous frame",
+    "前のコマ"
+  ],
+  [
+    "下一帧",
+    "Next frame",
+    "次のコマ"
+  ],
+  [
+    "晴天 · 选择仅保存在当前浏览器。",
+    "Sunny · Your choice is saved only in this browser.",
+    "晴れ · このブラウザーだけに設定を保存します。"
+  ],
+  [
+    "阴雨 · 玻璃水痕与灯串固定在前景，不跟随海浪。",
+    "Rainy · Raindrops and lights stay still above the moving sea.",
+    "雨 · ガラスの水滴とライトは、動く海とは別に固定されています。"
+  ],
+  [
+    "小猫打一次哈欠，结束后会继续睡觉。",
+    "The cat yawns once, then goes back to sleep.",
+    "猫は一度あくびをして、また眠ります。"
+  ],
+  [
+    "Leave a note (=^･ω･^=)",
+    "Leave a note (=^･ω･^=)",
+    "ひとこと残してね (=^･ω･^=)"
+  ],
+  [
+    "留句话吧 (=^･ω･^=)",
+    "Leave a note (=^･ω･^=)",
+    "ひとこと残してね (=^･ω･^=)"
+  ],
+  [
+    "路过海边，留下一点今天的心情。",
+    "Passing by the shore? Leave a little of your day here.",
+    "海辺を通りかかったら、今日の気持ちをひとこと。"
+  ],
+  [
+    "留言列表",
+    "Guestbook notes",
+    "ひとこと一覧"
+  ],
+  [
+    "示例留言",
+    "Sample note",
+    "サンプル"
+  ],
+  [
+    "写留言",
+    "Write a note",
+    "ひとことを書く"
+  ],
+  [
+    "写一条留言",
+    "Leave a little note",
+    "ひとことを残す"
+  ],
+  [
+    "留言内容",
+    "Your note",
+    "メッセージ"
+  ],
+  [
+    "想在这里留下一点什么？",
+    "What would you like to leave here?",
+    "ここに、どんな言葉を残しますか？"
+  ],
+  [
+    "留下留言",
+    "Leave note",
+    "メッセージを残す"
+  ],
+  [
+    "留言已保存在当前浏览器。",
+    "Your note has been saved in this browser.",
+    "メッセージをこのブラウザーに保存しました。"
+  ],
+  [
+    "留言保存失败，请保留内容后重试。",
+    "The note could not be saved. Keep a copy and retry.",
+    "メッセージを保存できませんでした。内容を控えてから再度お試しください。"
+  ],
+  [
+    "还没有留言，来留第一句话吧。",
+    "No notes yet. Leave the first one.",
+    "まだメッセージがありません。最初のひとことをどうぞ。"
+  ],
+  [
+    "女主坐在海边的背影",
+    "The heroine sitting by the sea, seen from behind",
+    "海辺に座る女の子の後ろ姿"
+  ],
+  [
+    "窗上的便签只放简短留言，与帖子分开。",
+    "These short notes have their own space, separate from posts.",
+    "ここは短いメッセージの場所です。記事とは別に保存されます。"
+  ],
+  [
+    "最新帖子在前 · 只记录阅读，不设点赞或评论。",
+    "Newest first · Views only, without likes or comments.",
+    "新しい投稿から表示 · 閲覧数のみ。いいねやコメントはありません。"
+  ],
+  [
+    "原文",
+    "Original",
+    "原文"
+  ],
+  [
+    "返回",
+    "Back",
+    "戻る"
+  ],
+  [
+    "自动翻译后台尚未完成配置。",
+    "Automatic translation has not been configured yet.",
+    "自動翻訳サービスはまだ設定されていません。"
+  ],
+  [
+    "翻译次数较多，请稍后再试。",
+    "Too many translation requests. Please try again later.",
+    "翻訳の回数が多いため、しばらくしてからお試しください。"
+  ],
+  [
+    "翻译服务额度已用完。",
+    "The translation service allowance has been used up.",
+    "翻訳サービスの利用枠を使い切りました。"
+  ],
+  [
+    "翻译服务繁忙，请稍后重试。",
+    "The translation service is busy. Please retry later.",
+    "翻訳サービスが混み合っています。しばらくしてからお試しください。"
+  ],
+  [
+    "翻译超时，请稍后重试。",
+    "Translation timed out. Please try again later.",
+    "翻訳がタイムアウトしました。しばらくしてからお試しください。"
+  ],
+  [
+    "无法装入贴图",
+    "Unable to load artwork",
+    "画像を読み込めませんでした"
+  ],
+  [
+    "服务暂时无法连接，请稍后重试。",
+    "The service is temporarily unavailable. Please try again later.",
+    "サービスに接続できません。しばらくしてからお試しください。"
+  ],
+  [
+    "自动翻译服务正在准备中，原文仍可正常阅读。",
+    "Automatic translation is being set up. You can still read the original.",
+    "自動翻訳は準備中です。原文は通常どおり読めます。"
+  ],
+  [
+    "发布后所有访客都能看到。清除浏览器数据会失去匿名帖的编辑权限。",
+    "Published content is visible to everyone. Clearing browser data removes your anonymous editing access.",
+    "公開後は誰でも閲覧できます。ブラウザーのデータを消去すると匿名投稿の編集権限が失われます。"
+  ],
+  [
+    "只能编辑当前访客会话发布的帖子。",
+    "You can only edit posts created in this visitor session.",
+    "この訪問者セッションで投稿した記事のみ編集できます。"
+  ],
+  [
+    "操作有些频繁，请稍后再试。",
+    "Too many requests. Please try again later.",
+    "操作が多すぎます。しばらくしてからお試しください。"
+  ],
+  [
+    "修改已发布。",
+    "Your changes are published.",
+    "変更を公開しました。"
+  ],
+  [
+    "已发布到次元闲谈。",
+    "Published to ACGN Notes.",
+    "ACGN Notes に投稿しました。"
+  ],
+  [
+    "留言已发布。",
+    "Your note is published.",
+    "メッセージを公開しました。"
+  ],
+  [
+    "再看一些留言",
+    "Read more notes",
+    "もっと読む"
+  ],
+  [
+    "原文已更新，请重新打开帖子后再试。",
+    "The original has changed. Reopen the post and try again.",
+    "原文が更新されました。記事を開き直してください。"
+  ],
+  [
+    "本期免费翻译额度已用完，原文仍可正常阅读。",
+    "The free translation allowance is exhausted. You can still read the original.",
+    "無料翻訳の上限に達しました。原文は通常どおり読めます。"
+  ],
+  [
+    "无法建立访客会话，请刷新后重试。",
+    "A visitor session could not be created. Please refresh and try again.",
+    "訪問者セッションを作成できません。更新してお試しください。"
+  ],
+  [
+    "访客会话已过期，请刷新后重试。",
+    "Your visitor session has expired. Please refresh and try again.",
+    "訪問者セッションの有効期限が切れました。更新してください。"
+  ],
+  [
+    "请检查昵称、标题和正文长度。",
+    "Please check the length of your nickname, title and text.",
+    "ニックネーム・タイトル・本文の長さをご確認ください。"
+  ],
+  [
+    "图片无法上传，请使用不超过 2MB 的 JPG 或 PNG。",
+    "Use a JPG or PNG image no larger than 2MB.",
+    "2MB以下のJPGまたはPNG画像をご使用ください。"
+  ],
+  [
+    "请重新裁剪 A4 封面。",
+    "Please crop the A4 cover again.",
+    "A4の表紙をもう一度トリミングしてください。"
+  ],
+  [
+    "这张图片不属于当前访客会话，请重新上传。",
+    "Please upload this image again from your current visitor session.",
+    "現在の訪問者セッションで画像をアップロードし直してください。"
+  ],
+  [
+    "这篇译文正在生成，请稍后再点一次。",
+    "This translation is being prepared. Please try again shortly.",
+    "翻訳を作成中です。少し待ってから再度お試しください。"
+  ],
+  [
+    "这一段过长，暂时无法翻译。",
+    "This paragraph is too long to translate.",
+    "段落が長すぎるため翻訳できません。"
+  ],
+  [
+    "草稿存储暂不可用。",
+    "Draft storage is temporarily unavailable.",
+    "下書きの保存は一時的に利用できません。"
+  ]
+]
