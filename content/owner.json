@@ -6,5 +6,16 @@
   "en":{"nickname":"Tao-xq","bio":"Hi, I'm Tatelyn Tao. Feel free to call me 桃子qwq. I'm glad you're here!\n\nI'm studying Electrical and Electronic Engineering at the University of Manchester. I love anime, manga, games and novels, and have a little chuunibyou streak. I'd love to chat about the stories we enjoy here and share a few everyday ramblings along the way.\n\n世界は僕の手に負えないから、\n負けるよ。","tags":""},
   "ja":{"nickname":"Tao-xq","bio":"Tatelyn Taoです。気軽に桃子qwqって呼んでください。遊びに来てくれてありがとう！\n\nマンチェスター大学で電気・電子工学を学んでいます。アニメ、漫画、ゲーム、小説が好きで、ちょっぴり中二病。ここでみんなと好きな作品の話をしたり、日々のあれこれを気ままに書いたりしていけたらと思っています。\n\n世界は僕の手に負えないから、\n負けるよ。","tags":""}
  },
- "friends":[]
+ "friends":[
+  {
+   "nickname":"TOMOchan",
+   "url":"https://zgqmoe.github.io/",
+   "avatar":"https://github.com/ZGQmoe.png",
+   "bio":"曼大 EEE · 项目、笔记、分析与杂文",
+   "i18n":{
+    "en":{"bio":"Manchester EEE · Projects, notes, analysis and essays"},
+    "ja":{"bio":"マンチェスター大学 EEE · プロジェクト、ノート、分析、エッセイ"}
+   }
+  }
+ ]
 }
