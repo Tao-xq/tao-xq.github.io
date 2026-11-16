@@ -36,6 +36,8 @@
 
 文章格式、后台配置和日常管理方法见 [维护说明](docs/maintenance.md)。
 
+个人文章也可以通过本机的 **Daily Notes 写作台** 编写：双击仓库中的 [Daily Notes 写作台.cmd](<Daily Notes 写作台.cmd>)，即可管理私有草稿、编辑图文、裁剪封面、预览并确认发布到 GitHub。使用方法见 [写作台说明](docs/daily-studio.md)。
+
 ## 本地运行
 
 使用 Node.js 24，在仓库目录运行：

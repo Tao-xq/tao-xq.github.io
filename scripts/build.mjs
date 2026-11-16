@@ -3,6 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import crypto from 'node:crypto';
 import sanitize from 'sanitize-html';
+import {dailyPost} from '../lib/daily-format.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const out=path.join(root,'dist');fs.mkdirSync(out,{recursive:true});fs.cpSync(path.join(root,'web'),out,{recursive:true});
@@ -20,6 +21,10 @@ for(const name of fs.readdirSync(path.join(root,'content/daily')).filter(n=>n.en
  const body=markdown(match[2]),version=crypto.createHash('sha256').update(meta.title+'\n'+body).digest('hex');
  const translations={};for(const language of ['zh','en','ja']){const translatedName=name.replace(/\.md$/,'.'+language+'.md'),translatedPath=path.join(root,'content/daily',translatedName);if(!fs.existsSync(translatedPath))continue;const translated=fs.readFileSync(translatedPath,'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);if(!translated)throw Error('Missing translation frontmatter: '+translatedName);const title=translated[1].match(/^title:\s*(.+)$/m)?.[1]?.trim();if(!title)throw Error('Missing translated title: '+translatedName);translations[language]={title,body:markdown(translated[2])};}
  daily.push({...meta,section:'daily',author:owner.nickname,avatar:owner.avatar,lang:['en','ja'].includes(meta.lang)?meta.lang:'zh',body,version,demo:false,translations});
+}
+for(const name of fs.readdirSync(path.join(root,'content/daily')).filter(n=>n.endsWith('.json')).sort()){
+ const value=JSON.parse(read('content/daily/'+name));if(value.draft===true)continue;
+ daily.push(dailyPost(value,owner));
 }
 if(new Set(daily.map(p=>p.id)).size!==daily.length)throw Error('Duplicate daily post id');
 write('content/generated.js','window.REST_CONTENT='+json({owner,daily,community:[],notes:[]})+';\n');

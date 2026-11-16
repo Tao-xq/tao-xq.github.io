@@ -17,7 +17,7 @@
  function validImage(value){const s=String(value||'');if(/^data:image\/(png|jpeg|webp|gif);base64,[a-z\d+/=\s]+$/i.test(s))return s;if(/^assets\/[\w./-]+$/.test(s))return s;return validLink(s);}
  function sanitize(html){
   const parsed=new DOMParser().parseFromString(String(html||''),'text/html');
-  const allowed=new Set('P BR STRONG B EM I U S BLOCKQUOTE OL UL LI A IMG PRE CODE H1 H2 H3 HR DIV SPAN'.split(' '));
+  const allowed=new Set('P BR STRONG B EM I U S BLOCKQUOTE OL UL LI A IMG FIGURE FIGCAPTION PRE CODE H1 H2 H3 H4 HR DIV SPAN SUB SUP'.split(' '));
   function walk(node){
    if(node.nodeType===3)return document.createTextNode(node.textContent);
    if(node.nodeType!==1)return document.createDocumentFragment();
@@ -28,6 +28,9 @@
     if(node.tagName==='IMG'){const src=validImage(node.getAttribute('src'));if(!src)return document.createDocumentFragment();out.setAttribute('src',src);out.setAttribute('alt',String(node.getAttribute('alt')||'正文图片').slice(0,200));out.setAttribute('loading','lazy');}
     const align=node.style?.textAlign||((node.className||'').match(/ql-align-(center|right|justify)/)||[])[1];if(['center','right','justify'].includes(align))out.className='ql-align-'+align;
     if(node.tagName==='LI'&&node.getAttribute('data-list')==='bullet')out.setAttribute('data-list','bullet');
+    const classes=[...(out.classList||[])];for(const c of node.classList||[])if(/^(ql-size-(small|large|huge)|ql-indent-[1-8]|ql-code-block(-container)?|note-photo)$/.test(c))classes.push(c);if(classes.length)out.className=[...new Set(classes)].join(' ');
+    for(const property of ['color','background-color']){const value=node.style?.getPropertyValue(property);if(value&&/^(#[a-f\d]{3,8}|rgb\(\d{1,3},\s*\d{1,3},\s*\d{1,3}\))$/i.test(value))out.style.setProperty(property,value);}
+    if(node.tagName==='FIGURE'){const width=node.style?.width;if(/^(25|50|75|100)%$/.test(width))out.style.width=width;for(const margin of ['margin-left','margin-right'])if(['auto','0px','0'].includes(node.style?.getPropertyValue(margin)))out.style.setProperty(margin,node.style.getPropertyValue(margin));}
    }
    for(const child of node.childNodes)out.append(walk(child));return out;
   }
