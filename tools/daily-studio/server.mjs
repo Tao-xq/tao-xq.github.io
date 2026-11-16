@@ -25,8 +25,9 @@ export async function createStudio({repo=path.resolve(here,'../..'),data,port=41
  const server=http.createServer(async(req,res)=>{
   try{
    const address=server.address(),origin='http://127.0.0.1:'+address.port;
-   if(req.headers.host!=='127.0.0.1:'+address.port||req.headers.origin&&req.headers.origin!==origin||req.headers['sec-fetch-site']==='cross-site')throw fail('这个写作台只接受本机页面的请求。',403);
    const url=new URL(req.url,origin),pathname=decodeURIComponent(url.pathname);
+   const openingDocument=req.method==='GET'&&pathname==='/'&&req.headers['sec-fetch-mode']==='navigate'&&req.headers['sec-fetch-dest']==='document';
+   if(req.headers.host!=='127.0.0.1:'+address.port||!openingDocument&&(req.headers.origin&&req.headers.origin!==origin||req.headers['sec-fetch-site']==='cross-site'))throw fail('这个写作台只接受本机页面的请求。',403);
    if(pathname==='/health'&&req.method==='GET')return json(res,{app:'rest-mode-daily-studio',version:1});
    if(pathname==='/'&&req.method==='GET'){
     const html=(await fs.readFile(path.join(here,'app.html'),'utf8')).replace('__CSRF__',csrf);res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Set-Cookie':'daily_studio='+session+'; HttpOnly; SameSite=Strict; Path=/','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'",'X-Content-Type-Options':'nosniff'});return res.end(html);

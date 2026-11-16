@@ -14,7 +14,9 @@ export async function atomic(file,value){await fs.mkdir(path.dirname(file),{recu
 export function assetNames(draft){return [...new Set(JSON.stringify(draft).match(/[a-f0-9]{64}\.(?:jpg|png|webp|gif)/g)||[])];}
 export function validateDelta(delta){
  if(!delta||!Array.isArray(delta.ops)||delta.ops.length>100000)throw fail('正文格式不正确，请先导出备份。');
- for(const op of delta.ops){if(typeof op.insert==='string')continue;const photo=op.insert?.photo;if(photo){if(typeof photo.src!=='string'||!/^\/api\/assets\/[a-f0-9]{64}\.(jpg|png|webp|gif)$/.test(photo.src))throw fail('正文图片需要先上传到写作台。');if(![25,50,75,100].includes(Number(photo.width||100))||!['left','center','right'].includes(photo.align||'center'))throw fail('图片的尺寸或对齐方式不正确。');}else if(op.insert?.divider!==true)throw fail('正文包含不支持的内容。');}
+ const layout=value=>{const width=Number(value.width??100);if(!Number.isFinite(width)||width<1||width>100||Math.abs(width*10-Math.round(width*10))>1e-7||!['left','center','right'].includes(value.align||'center'))throw fail('图片宽度需要在 1–100% 之间，最多一位小数。');};
+ const photo=value=>{if(!value||typeof value.src!=='string'||!/^\/api\/assets\/[a-f0-9]{64}\.(jpg|png|webp|gif)$/.test(value.src))throw fail('正文图片需要先上传到写作台。');layout(value);};
+ for(const op of delta.ops){if(typeof op.insert==='string')continue;if(op.insert?.photo)photo(op.insert.photo);else if(op.insert?.gallery){const row=op.insert.gallery;layout(row);if(!Array.isArray(row.photos)||row.photos.length!==2||!Number.isInteger(Number(row.split??50))||Number(row.split??50)<10||Number(row.split??50)>90)throw fail('并排图片需要两张照片，左右比例在 10–90% 之间。');row.photos.forEach(photo);}else if(op.insert?.divider!==true)throw fail('正文包含不支持的内容。');}
  return delta;
 }
 export class NoteStore{

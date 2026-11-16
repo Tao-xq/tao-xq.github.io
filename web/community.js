@@ -28,9 +28,9 @@
     if(node.tagName==='IMG'){const src=validImage(node.getAttribute('src'));if(!src)return document.createDocumentFragment();out.setAttribute('src',src);out.setAttribute('alt',String(node.getAttribute('alt')||'正文图片').slice(0,200));out.setAttribute('loading','lazy');}
     const align=node.style?.textAlign||((node.className||'').match(/ql-align-(center|right|justify)/)||[])[1];if(['center','right','justify'].includes(align))out.className='ql-align-'+align;
     if(node.tagName==='LI'&&node.getAttribute('data-list')==='bullet')out.setAttribute('data-list','bullet');
-    const classes=[...(out.classList||[])];for(const c of node.classList||[])if(/^(ql-size-(small|large|huge)|ql-indent-[1-8]|ql-code-block(-container)?|note-photo)$/.test(c))classes.push(c);if(classes.length)out.className=[...new Set(classes)].join(' ');
+    const classes=[...(out.classList||[])];for(const c of node.classList||[])if(/^(ql-size-(small|large|huge)|ql-indent-[1-8]|ql-code-block(-container)?|note-photo(-row)?)$/.test(c))classes.push(c);if(classes.length)out.className=[...new Set(classes)].join(' ');
     for(const property of ['color','background-color']){const value=node.style?.getPropertyValue(property);if(value&&/^(#[a-f\d]{3,8}|rgb\(\d{1,3},\s*\d{1,3},\s*\d{1,3}\))$/i.test(value))out.style.setProperty(property,value);}
-    if(node.tagName==='FIGURE'){const width=node.style?.width;if(/^(25|50|75|100)%$/.test(width))out.style.width=width;for(const margin of ['margin-left','margin-right'])if(['auto','0px','0'].includes(node.style?.getPropertyValue(margin)))out.style.setProperty(margin,node.style.getPropertyValue(margin));}
+    if(node.tagName==='FIGURE'||node.classList?.contains('note-photo-row')){const width=node.style?.width;if(/^(?:100(?:\.0)?|[1-9]\d?(?:\.\d)?)%$/.test(width))out.style.width=width;for(const margin of ['margin-left','margin-right'])if(['auto','0px','0'].includes(node.style?.getPropertyValue(margin)))out.style.setProperty(margin,node.style.getPropertyValue(margin));const columns=node.style?.gridTemplateColumns;if(node.classList?.contains('note-photo-row')&&/^(?:[1-8]\d|90)fr (?:[1-8]\d|90)fr$/.test(columns))out.style.gridTemplateColumns=columns;}
    }
    for(const child of node.childNodes)out.append(walk(child));return out;
   }

@@ -6,7 +6,8 @@ import os from 'node:os';
 import http from 'node:http';
 import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
-import {NoteStore,readJson} from '../tools/daily-studio/store.mjs';
+import {NoteStore,readJson,validateDelta} from '../tools/daily-studio/store.mjs';
+import {parseHTML} from 'linkedom';
 import {NotePublisher} from '../tools/daily-studio/publisher.mjs';
 import {createStudio} from '../tools/daily-studio/server.mjs';
 import {cleanDailyHtml,dailyPost} from '../lib/daily-format.mjs';
@@ -44,11 +45,29 @@ test('drafts enforce revisions, keep history, archive reversibly and validate up
  const backup=await store.backup(saved.id),imported=await store.importFile({backup});assert.notEqual(imported.id,saved.id);assert.equal(imported.locales.zh.title,recovered.locales.zh.title);assert.equal(Object.keys((await store.backup(imported.id)).assets).length,1);
 });
 
+test('paired photos and fractional widths survive save, backup, publication preparation and HTML export',async t=>{
+ const root=await temporary(t);await fixture(root);const store=new NoteStore(root);await store.init();const asset=await store.putAsset(cover),draft=await store.create();
+ const photo=caption=>({src:asset.src,alt:caption,caption,width:100,align:'center'}),row={photos:[photo('左图说明'),photo('右图说明')],width:83.7,split:42,align:'left'};
+ const html='<p>照片前的文字。</p><div class="note-photo-row" style="width:83.7%;margin-left:0px;margin-right:auto;grid-template-columns:42fr 58fr">'+row.photos.map(p=>'<figure class="note-photo"><img src="'+p.src+'" alt="'+p.alt+'"><figcaption>'+p.caption+'</figcaption></figure>').join('')+'</div><p>照片后的文字。</p>';
+ const saved=await store.save(draft.id,{...draft,cover:asset.src,locales:{zh:{title:'并排照片',html,delta:{ops:[{insert:'照片前的文字。\n'},{insert:{gallery:row}},{insert:'\n照片后的文字。\n'}]}}}});
+ const restored=await store.get(saved.id);assert.deepEqual(restored.locales.zh.delta.ops[1].insert.gallery,row);assert(restored.locales.zh.html.includes('width:83.7%'));assert(restored.locales.zh.html.includes('grid-template-columns:42fr 58fr'));assert(restored.locales.zh.html.includes('margin-left:0px'));
+ const imported=await store.importFile({backup:await store.backup(saved.id)});assert.deepEqual(imported.locales.zh.delta.ops[1].insert.gallery,row);
+ const publisher=new NotePublisher(store),plan=await publisher.plan(saved.id),dom=parseHTML('<html><body>'+plan.preview+'</body></html>').document;
+ assert.equal(dom.querySelectorAll('.note-photo-row figure').length,2);assert.deepEqual([...dom.querySelectorAll('figcaption')].map(n=>n.textContent),['左图说明','右图说明']);assert(!plan.preview.includes('/api/assets/'));assert(plan.preview.includes('grid-template-columns:42fr 58fr'));
+ const exported=await publisher.exportHtml(saved.id);assert(exported.includes('.note-photo-row{display:grid'));assert.equal((exported.match(/src="data:image\/png;base64,/g)||[]).length,3);
+ const single={ops:[{insert:{photo:{...photo('单图'),width:37.5}}},{insert:'\n'}]};assert.equal(validateDelta(single),single);
+ for(const width of [0,101,37.55,Infinity])assert.throws(()=>validateDelta({ops:[{insert:{photo:{...photo('坏比例'),width}}}]}));
+ assert.throws(()=>validateDelta({ops:[{insert:{gallery:{...row,photos:[photo('缺少第二张')]}}}]}));assert.throws(()=>validateDelta({ops:[{insert:{gallery:{...row,split:100}}}]}));
+ const unsafe=cleanDailyHtml('<div class="note-photo-row" style="width:37.5%;grid-template-columns:url(https://evil.invalid) 1fr;position:fixed" onclick="bad()">'+html+'</div>');assert(!/onclick|position|evil\.invalid/.test(unsafe));
+});
+
 test('local API rejects cross-site, unauthenticated and unverified writes and serializes conflicting saves',async t=>{
  const root=await temporary(t);await fixture(root);const app=await createStudio({repo:root,port:0,seed:false});t.after(()=>new Promise(resolve=>app.server.close(resolve)));const origin=app.url.slice(0,-1);
  assert.equal((await fetch(app.url+'api/drafts')).status,401);
  assert.equal((await fetch(app.url,{headers:{origin:'https://evil.invalid'}})).status,403);
  const rebound=await new Promise((resolve,reject)=>{const request=http.get(app.url,{headers:{host:'evil.invalid'}},response=>{response.resume();resolve(response.statusCode);});request.on('error',reject);});assert.equal(rebound,403);
+ const navigation=await new Promise((resolve,reject)=>{const request=http.get(app.url,{headers:{origin:'https://example.invalid','sec-fetch-site':'cross-site','sec-fetch-mode':'navigate','sec-fetch-dest':'document'}},response=>{response.resume();resolve(response.statusCode);});request.on('error',reject);});assert.equal(navigation,200);
+ assert.equal((await fetch(app.url+'api/bootstrap',{headers:{origin:'https://example.invalid'}})).status,403);
  const htmlResponse=await fetch(app.url),cookie=htmlResponse.headers.get('set-cookie').split(';')[0],html=await htmlResponse.text(),csrf=html.match(/name="daily-csrf" content="([a-f0-9]+)"/)[1];
  const headers={cookie,origin,'Content-Type':'application/json','X-Daily-CSRF':csrf};
  assert.equal((await fetch(app.url+'api/drafts',{method:'POST',headers:{cookie,origin,'Content-Type':'application/json'},body:'{}'})).status,403);
